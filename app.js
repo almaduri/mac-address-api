@@ -55,6 +55,16 @@ app.get('/update/:mac/:name', (req, res) => {
   })
 })
 
+app.get('/add/:mac/:name', (req, res) => {
+  const newMac = {name: req.params.name, mac_address: req.params.mac}
+  const sql = `INSERT INTO mac_list SET ?`
+  const query = db.query(sql, newMac, (err, result) => {
+    if(err) throw err
+    console.log(result)
+    res.send(`Added ${req.params.mac}`)
+  })
+})
+
 const port = process.env.PORT || 3000
 
 app.listen(port, () => {
