@@ -8,6 +8,9 @@
   },
   "author": "Mohammad Ali Al Maduri",
   "license": "ISC",
+  "engines": {
+    "node": "16.13.0"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
