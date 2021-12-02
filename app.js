@@ -13,13 +13,13 @@ app.use(cors({
 dbHost = process.env.DB_HOST
 dbUser = process.env.DB_USER
 dbPassword = process.env.DB_PASSWORD
-dbDatabase = process.env.DB_DATABASE
+dbName = process.env.DB_NAME
 
 const db = mysql.createConnection({
   host     : dbHost,
   user     : dbUser,
   password : dbPassword,
-  database : dbDatabase
+  database : dbName
 })
 
 // Connect
