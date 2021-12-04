@@ -47,14 +47,12 @@ app.get('/getmacs', (req, res) => {
 })
 
 app.post('/post', (req, res) => {
-  // const sql = `SELECT * FROM mac_list ORDER BY mac_list.name ASC`
-  // const query = db.query(sql, (err, result) => {
-  //   if(err) throw err
-  //   console.log(result)
-  //   res.send(result)
-  // })
-
-  console.log(req.body)
+  const sql = `SELECT * FROM mac_list ORDER BY if(mac_list.name = '' or mac_list.name is null,1,0),mac_list.name`
+  const query = db.query(sql, (err, result) => {
+    if(err) throw err
+    console.log(result)
+    res.send(result)
+  })
 })
 
 app.get('/update/:mac/:name', (req, res) => {
