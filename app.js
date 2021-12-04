@@ -9,16 +9,18 @@ app.use(cors({
   origin: "*"
 }))
 
+app.use(express.json())
+
 // Create connection
 dbHost = process.env.DB_HOST
 dbUser = process.env.DB_USER
-dbPassword = process.env.DB_PASSWORD
+dbPass = process.env.DB_PASS
 dbName = process.env.DB_NAME
 
 const db = mysql.createConnection({
   host     : dbHost,
   user     : dbUser,
-  password : dbPassword,
+  password : dbPass,
   database : dbName
 })
 
@@ -39,9 +41,20 @@ app.get('/getmacs', (req, res) => {
   const sql = `SELECT * FROM mac_list ORDER BY mac_list.mac_address ASC`
   const query = db.query(sql, (err, result) => {
     if(err) throw err
-    console.log(result)
+    // console.log(result)
     res.send(result)
   })
+})
+
+app.post('/post', (req, res) => {
+  // const sql = `SELECT * FROM mac_list ORDER BY mac_list.name ASC`
+  // const query = db.query(sql, (err, result) => {
+  //   if(err) throw err
+  //   console.log(result)
+  //   res.send(result)
+  // })
+
+  console.log(req.body)
 })
 
 app.get('/update/:mac/:name', (req, res) => {
